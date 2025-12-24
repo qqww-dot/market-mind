@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Market Mind</title>
+  <meta name="description" content="A personal stock journal for emotions, decisions, and market thoughts."/>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0a0f1a;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --line:rgba(255,255,255,.10);
+      --accent:#38bdf8;
+
+      --bg2:#ffffff;
+      --panel2:#ffffff;
+      --text2:#0f172a;
+      --muted2:#475569;
+      --line2:rgba(15,23,42,.10);
+      --accent2:#2563eb;
+    }
+    html,body{margin:0;padding:0}
+    body{
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .wrap{max-width: 980px; margin: 0 auto; padding: 28px 16px 64px;}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 0 18px; border-bottom:1px solid var(--line);
+      gap:12px; flex-wrap:wrap;
+    }
+    .brand{display:flex; align-items:baseline; gap:10px}
+    .brand h1{margin:0; font-size: 26px; letter-spacing:.2px}
+    .tag{color:var(--muted); font-size: 13px}
+    .btns{display:flex; gap:10px; flex-wrap:wrap}
+    button,a.btn{
+      appearance:none; border:1px solid var(--line);
+      background: transparent; color: inherit;
+      padding: 10px 12px; border-radius: 12px;
+      font-size: 14px; cursor:pointer; text-decoration:none;
+    }
+    button:hover,a.btn:hover{border-color: rgba(56,189,248,.45)}
+    .hero{padding: 24px 0}
+    .hero h2{margin: 0 0 10px; font-size: 34px; line-height:1.2}
+    .hero p{margin:0; color: var(--muted); max-width: 72ch}
+    .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap: 14px; margin-top: 18px}
+    .card{
+      border:1px solid var(--line); background: rgba(255,255,255,.02);
+      border-radius: 18px; padding: 16px;
+    }
+    .card h3{margin:0 0 8px; font-size: 16px}
+    .card p{margin: 6px 0; color: var(--muted)}
+    .kbd{font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      font-size: 12px; padding:2px 6px; border:1px solid var(--line); border-radius:8px; color: var(--muted)}
+    ul{margin:10px 0 0 18px; color: var(--muted)}
+    li{margin:6px 0}
+    .accent{color: var(--accent)}
+    .footer{margin-top: 22px; padding-top: 18px; border-top:1px solid var(--line); color: var(--muted); font-size: 13px}
+    .posts{margin-top: 14px; display:grid; gap: 10px}
+    .post{
+      border:1px solid var(--line); border-radius: 16px; padding: 14px 16px;
+      background: rgba(255,255,255,.01);
+    }
+    .post .meta{display:flex; gap:10px; flex-wrap:wrap; color: var(--muted); font-size: 12px}
+    .post h4{margin:8px 0 6px; font-size: 15px}
+    .post p{margin:0; color: var(--muted)}
+    .pill{display:inline-block; font-size: 12px; padding:2px 8px; border-radius:999px; border:1px solid var(--line); color: var(--muted)}
+    .note{margin-top:10px; color: var(--muted); font-size: 13px}
+    @media (max-width: 860px){
+      .grid{grid-template-columns: 1fr}
+      .hero h2{font-size: 28px}
+    }
+
+    /* Light mode */
+    body.light{
+      background: var(--bg2);
+      color: var(--text2);
+    }
+    body.light header{border-bottom-color: var(--line2)}
+    body.light .card, body.light .post{
+      border-color: var(--line2);
+      background: var(--panel2);
+    }
+    body.light button, body.light a.btn{border-color: var(--line2)}
+    body.light .tag, body.light .hero p, body.light .card p, body.light ul, body.light .post p, body.light .post .meta, body.light .pill, body.light .footer, body.light .note{
+      color: var(--muted2);
+    }
+    body.light .accent{color: var(--accent2)}
+    body.light button:hover, body.light a.btn:hover{border-color: rgba(37,99,235,.35)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>Market Mind</h1>
+        <div class="tag">股票情绪 · 交易复盘 · 投资见解</div>
+      </div>
+      <div class="btns">
+        <button id="toggle">切换：深色 / 白底</button>
+        <a class="btn" href="./README.html" style="display:none" aria-hidden="true">关于</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h2>在市场里，最难的不是看懂K线，<span class="accent">而是看懂自己。</span></h2>
+      <p>
+        这里记录我的交易情绪、决策过程与市场思考：恐惧、贪婪、耐心、纪律——
+        不是为了预测市场，而是为了持续训练心智。
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>📌 我会写什么</h3>
+          <ul>
+            <li><span class="pill">情绪日志</span> 今天我在怕什么？我在追什么？</li>
+            <li><span class="pill">复盘</span> 买入理由、退出理由、是否遵守规则</li>
+            <li><span class="pill">观点</span> 对行业、个股、宏观叙事的个人看法</li>
+            <li><span class="pill">自我训练</span> 如何在波动中保持清醒与节制</li>
+          </ul>
+          <div class="note">提示：你可以先把每一篇写成一个 <span class="kbd">.md</span> 文件，慢慢积累。</div>
+        </div>
+
+        <div class="card">
+          <h3>🧭 发文模板（复制就能写）</h3>
+          <p><span class="kbd">日期</span> / <span class="kbd">标的</span> / <span class="kbd">情绪</span> / <span class="kbd">计划</span></p>
+          <ul>
+            <li>我现在的情绪：____（1-10分）</li>
+            <li>我为什么想交易：____（事实/叙事/冲动）</li>
+            <li>我的规则：____（止损/仓位/条件）</li>
+            <li>复盘：____（做对了什么/哪里失控）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="posts">
+        <div class="post">
+          <div class="meta">
+            <span class="pill">示例</span>
+            <span>2025-12-24</span>
+            <span>主题：我为什么做 Market Mind</span>
+          </div>
+          <h4>第一篇：把市场当镜子</h4>
+          <p>我不想再被涨跌牵着走。我想记录每一次冲动背后的原因，训练自己按规则行事。</p>
+        </div>
+
+        <div class="post">
+          <div class="meta">
+            <span class="pill">示例</span>
+            <span>2025-12-24</span>
+            <span>主题：一次冲动交易的复盘</span>
+          </div>
+          <h4>第二篇：我在追涨时，心里发生了什么？</h4>
+          <p>事实是什么？我脑中补了什么故事？我忽略了哪些风险？这篇把过程拆开。</p>
+        </div>
+      </div>
+
+      <div class="footer">
+        © <span id="year"></span> Market Mind · Built with GitHub Pages ·
+        <span class="accent">Keep thinking. Keep disciplined.</span>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const key = "mm_theme";
+    const body = document.body;
+
+    function applyTheme(v){
+      if(v === "light") body.classList.add("light");
+      else body.classList.remove("light");
+    }
+
+    const saved = localStorage.getItem(key);
+    if(saved) applyTheme(saved);
+
+    document.getElementById("toggle").addEventListener("click", () => {
+      const isLight = body.classList.contains("light");
+      const next = isLight ? "dark" : "light";
+      applyTheme(next);
+      localStorage.setItem(key, next);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
