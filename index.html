@@ -1,307 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Market Mind</title>
-  <meta name="description" content="A personal stock journal for emotions, decisions, and market thoughts." />
+  <meta charset="UTF-8">
+  <title>Market Mind · 主内股票</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    :root{
-      --bg:#0b1220;
-      --panel:#0f1a2e;
-      --panel2:#0b1529;
-      --text:#e7eefc;
-      --muted:#9fb0d0;
-      --line:rgba(255,255,255,.10);
-      --accent:#38bdf8;
-      --accent2:#22c55e;
-      --warn:#fbbf24;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
-      background:
-        radial-gradient(900px 420px at 20% -10%, rgba(56,189,248,.18), transparent 60%),
-        radial-gradient(820px 420px at 90% 10%, rgba(34,197,94,.14), transparent 60%),
-        radial-gradient(900px 500px at 50% 120%, rgba(251,191,36,.10), transparent 60%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 64px}
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;margin-bottom:22px;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;
-    }
-    .logo{
-      width:40px;height:40px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(56,189,248,.95), rgba(34,197,94,.75));
-      box-shadow: 0 10px 30px rgba(56,189,248,.15);
-    }
-    .brand h1{font-size:18px;margin:0;letter-spacing:.4px}
-    .brand p{margin:0;font-size:12px;color:var(--muted)}
-    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .btn{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      padding:10px 12px;border-radius:12px;
-      text-decoration:none;
-      display:inline-flex;gap:8px;align-items:center;
-      transition: .18s ease;
-      backdrop-filter: blur(10px);
-    }
-    .btn:hover{transform: translateY(-1px);border-color: rgba(56,189,248,.35)}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(56,189,248,.9), rgba(56,189,248,.25));
-      border-color: rgba(56,189,248,.45);
-    }
-    .pill{
-      font-size:12px;color:var(--muted);
-      padding:8px 10px;border:1px solid var(--line);
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
+    body {
+      margin: 0;
+      background: #f6f2ea;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: #2b2b2b;
     }
 
-    .hero{
-      display:grid;gap:18px;
-      grid-template-columns: 1.15fr .85fr;
-      align-items:stretch;
-    }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 80px 20px;
+      text-align: center;
     }
 
-    .card{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .card.pad{padding:18px}
-    .heroTitle{
-      font-size:38px;margin:4px 0 10px;line-height:1.12;
-      letter-spacing:.2px;
-    }
-    @media (max-width: 500px){
-      .heroTitle{font-size:30px}
-    }
-    .sub{
-      color:var(--muted);margin:0 0 14px;font-size:14px;
-    }
-    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    @media (max-width: 500px){
-      .kpis{grid-template-columns:1fr}
-    }
-    .kpi{
-      border:1px solid var(--line);
-      background: rgba(15,26,46,.55);
+    .hero img {
+      max-width: 90%;
       border-radius: 16px;
-      padding:12px 12px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     }
-    .kpi .n{font-size:18px;font-weight:700}
-    .kpi .t{font-size:12px;color:var(--muted)}
-    .tagRow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
-    .tag{
-      font-size:12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      padding:6px 10px;border-radius:999px;
-    }
-    .tag.accent{border-color: rgba(56,189,248,.35); color: rgba(56,189,248,.95)}
-    .tag.good{border-color: rgba(34,197,94,.35); color: rgba(34,197,94,.95)}
-    .tag.warn{border-color: rgba(251,191,36,.35); color: rgba(251,191,36,.95)}
 
-    .shot{
-      position:relative;
-      min-height: 340px;
-      background: var(--panel2);
+    h1 {
+      margin-top: 50px;
+      font-size: 42px;
+      letter-spacing: 2px;
     }
-    .shot img{
-      width:100%;height:100%;
-      object-fit:cover;
-      display:block;
-      filter: saturate(1.05) contrast(1.05);
+
+    p {
+      font-size: 20px;
+      line-height: 1.8;
+      margin: 30px auto;
+      max-width: 700px;
     }
-    .shot::after{
-      content:"";
-      position:absolute;inset:0;
-      background: linear-gradient(180deg, rgba(11,18,32,.15), rgba(11,18,32,.75));
-      pointer-events:none;
+
+    .verse {
+      margin-top: 40px;
+      font-size: 16px;
+      color: #666;
     }
-    .shotCaption{
-      position:absolute;left:16px;right:16px;bottom:14px;
-      display:flex;gap:10px;align-items:flex-end;justify-content:space-between;
-      z-index:2;
+
+    footer {
+      margin-top: 80px;
+      font-size: 14px;
+      color: #999;
     }
-    .shotCaption .left{
-      max-width: 70%;
-    }
-    .shotCaption .left .title{
-      font-weight:800;margin:0 0 4px;font-size:14px;
-    }
-    .shotCaption .left .desc{
-      margin:0;color:var(--muted);font-size:12px;
-    }
-    .miniBtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .mini{
-      font-size:12px;padding:8px 10px;border-radius:12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      text-decoration:none;
-    }
-    .mini:hover{border-color: rgba(34,197,94,.35)}
-    .section{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width: 900px){.section{grid-template-columns:1fr}}
-    .feat{
-      padding:16px;
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      background: rgba(15,26,46,.45);
-    }
-    .feat h3{margin:0 0 6px;font-size:15px}
-    .feat p{margin:0;color:var(--muted);font-size:13px}
-    .footer{
-      margin-top:26px;
-      color: var(--muted);
-      font-size:12px;
-      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-      border-top: 1px solid var(--line);
-      padding-top: 14px;
-    }
-    .accentLine{color: rgba(56,189,248,.95)}
-    .mutedLink{color: var(--muted);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.25)}
-    .mutedLink:hover{color: var(--text)}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>market-mind</h1>
-          <p>记录交易情绪、决策与市场思考的个人空间</p>
-        </div>
-      </div>
 
-      <div class="actions">
-        <span class="pill">GitHub Pages · 免费托管</span>
-        <a class="btn primary" href="#journal">开始记录</a>
-        <a class="btn" href="#about">关于</a>
-      </div>
-    </div>
+  <div class="container">
 
     <div class="hero">
-      <div class="card pad">
-        <div class="tagRow">
-          <span class="tag accent">Discipline</span>
-          <span class="tag good">Clarity</span>
-          <span class="tag warn">Risk first</span>
-        </div>
-
-        <h2 class="heroTitle">Keep thinking.<br/>Keep disciplined.</h2>
-        <p class="sub">
-          这里不是“预测市场”的地方，而是让你在每一次买卖前后，
-          都能看清自己的动机、风险、规则与执行。
-        </p>
-
-        <div class="kpis">
-          <div class="kpi">
-            <div class="n">01</div>
-            <div class="t">写下情绪：恐惧/贪婪/犹豫</div>
-          </div>
-          <div class="kpi">
-            <div class="n">02</div>
-            <div class="t">写下规则：入场/止损/止盈</div>
-          </div>
-          <div class="kpi">
-            <div class="n">03</div>
-            <div class="t">写下复盘：哪里做对/哪里偏离</div>
-          </div>
-        </div>
-
-        <div class="section" id="about">
-          <div class="feat">
-            <h3>🧠 情绪与决策分离</h3>
-            <p>用“记录”代替冲动，用“流程”代替猜测。</p>
-          </div>
-          <div class="feat">
-            <h3>📌 规则先行</h3>
-            <p>每一笔交易先写规则：为什么买、错了怎么办。</p>
-          </div>
-          <div class="feat">
-            <h3>📈 复利来自一致性</h3>
-            <p>真正的成长来自长期可重复的执行与复盘。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card shot" aria-label="hero image">
-        <!-- 你的图片文件名：截1111.png（在仓库根目录） -->
-        <img src="./截1111.png" alt="Market Mind cover" />
-        <div class="shotCaption">
-          <div class="left">
-            <p class="title">封面图已加载</p>
-            <p class="desc">如果你以后换图，只要上传新图片并改这里的文件名即可。</p>
-          </div>
-          <div class="miniBtns">
-            <a class="mini" href="#journal">模板</a>
-            <a class="mini" href="#tips">建议</a>
-          </div>
-        </div>
-      </div>
+      <img src="hero.jpg" alt="Market Mind">
     </div>
 
-    <div class="card pad" id="journal" style="margin-top:16px">
-      <h3 style="margin:0 0 10px">📒 今日记录模板</h3>
-      <div style="color:var(--muted);font-size:13px">
-        <p style="margin:0 0 8px"><b>1) 市场状态：</b>（趋势/震荡/消息驱动？）</p>
-        <p style="margin:0 0 8px"><b>2) 我的情绪：</b>（焦虑/兴奋/不确定？打分 1-10）</p>
-        <p style="margin:0 0 8px"><b>3) 交易计划：</b>入场点、止损点、止盈点、仓位比例</p>
-        <p style="margin:0 0 8px"><b>4) 执行结果：</b>是否按计划？偏离的原因是什么？</p>
-        <p style="margin:0"><b>5) 一句话复盘：</b>我下次要更____（耐心/果断/纪律/客观）</p>
-      </div>
+    <h1>Market Mind · 主内股票</h1>
+
+    <p>
+      我们不追逐贪婪，<br>
+      我们在光中做交易。<br><br>
+      这是一个结合信仰、纪律与市场智慧的学习空间。
+    </p>
+
+    <div class="verse">
+      “因为你的财宝在哪里，你的心也在那里。”<br>
+      —— 马太福音 6:21
     </div>
 
-    <div class="card pad" id="tips" style="margin-top:14px">
-      <h3 style="margin:0 0 10px">✅ 让网站越来越“像样”的 3 个小技巧</h3>
-      <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:13px">
-        <li>把图片放到一个 <b>images</b> 文件夹：比如 <code>images/cover.png</code>（更整洁）</li>
-        <li>新增一页：比如 <b>journal.html</b>、<b>about.html</b>，然后用链接跳转</li>
-        <li>每次改完点右上角 <b>Commit changes</b>，1-2 分钟后网站自动更新</li>
-      </ul>
-    </div>
+    <footer>
+      © 2025 Market Mind · Built with faith and discipline
+    </footer>
 
-    <div class="footer">
-      <div>© <span id="year"></span> Market Mind · Built with GitHub Pages · <span class="accentLine">Keep disciplined.</span></div>
-      <div>
-        <a class="mutedLink" href="./README.md">README</a>
-        &nbsp;·&nbsp;
-        <a class="mutedLink" href="https://github.com/qwww-dot/market-mind" target="_blank" rel="noopener">Repo</a>
-      </div>
-    </div>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
