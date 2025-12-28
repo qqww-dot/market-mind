@@ -193,8 +193,9 @@
       background: rgba(255,255,255,.03);
       padding:18px;
     }
-    .tag{
-      display:inline-flex; gap:8px; align-items:center;
+    .card .tag{
+      display:inline-flex;
+      gap:8px; align-items:center;
       color:rgba(231,238,247,.90);
       font-weight:720;
       font-size:14px;
@@ -230,4 +231,185 @@
       display:flex;
       justify-content:space-between;
       gap:14px;
-      flex
+      flex-wrap:wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Market Mind</span>
+      </div>
+      <div class="nav">
+        <a href="#about">关于</a>
+        <a href="#framework">框架</a>
+        <a href="#faith">信仰</a>
+        <a href="#notes">笔记</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker"><span class="dot"></span> 信仰 · 纪律 · 市场</div>
+          <h1>长期思考。<br/>以风险为先。</h1>
+          <p class="subtitle">
+            Market Mind 是一个安静、专业的学习空间，用于研究市场，也用于照见人心。
+            我们坚持流程、概率与纪律 —— 以良知与信仰为内在秩序。
+          </p>
+
+          <div class="cta-row">
+            <!-- 以后加社群链接：把 href 改成 Discord/微信群/Telegram 等 -->
+            <a class="btn primary" href="#" onclick="return false;">加入（即将开放）</a>
+            <a class="btn" href="#framework">阅读框架</a>
+          </div>
+
+          <div class="hint">
+            仅供学习与交流，不构成投资建议。无炒作、无承诺。<br/>
+            这里只做一件事：建立稳定的决策系统，走得更久。
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-top">
+            <div class="mini">
+              <span class="pill">研究</span>
+              <span class="pill">心智</span>
+              <span class="pill">反思</span>
+            </div>
+            <span class="muted">v0.1</span>
+          </div>
+          <div class="panel-body">
+            <div class="cover">
+              <!-- 把主图放进仓库根目录，命名为 hero.jpg，就会显示 -->
+              <img src="hero.jpg" alt="主图" onerror="this.style.display='none';" />
+              <div class="cover-overlay" aria-hidden="true"></div>
+              <div class="cover-text">
+                <p class="cover-title">一套可执行的纪律框架</p>
+                <p class="cover-sub">流程 > 预测 · 风险控制 · 情绪稳定</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>这是什么</h2>
+      <p class="lead">
+        这是一个“社区入口页”，用于承载我们的理念与方法论。
+        目标很简单：建立稳定的内在秩序（信仰与良知），以及稳定的外在流程（以风险为核心的市场学习）。
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 市场研究</div>
+          <p>
+            研究市场状态、波动与结构，关注行为与资金的真实反馈。
+            我们避免情绪化结论，只记录：我们看到的、我们不知道的、以及风险在哪里。
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 风险与纪律</div>
+          <p>
+            仓位管理、回撤控制与决策卫生，比“信号”更重要。
+            纪律不是口号，而是可被执行、可被复盘的优势。
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 心智与反思</div>
+          <p>
+            市场会放大欲望与恐惧。我们练习诚实、克制与反思，
+            避免让交易成为逃避、补偿或自义的替代品。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="framework" class="section">
+      <h2>我们如何研究“如何炒股”</h2>
+      <p class="lead">
+        一套在坏日子里也能执行的框架。后续会扩展为多页体系（入门、策略、风控、复盘）。
+      </p>
+
+      <div class="two">
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 1）流程优先于预测</div>
+          <p>
+            先定义你的“如果/那么”规则，再谈入场。你不需要经常对，只需要持续做对风险控制。
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 2）以风险为先执行</div>
+          <p>
+            入场前先确定无效点；盈利前先计算最大亏损；产生“信心”之前先确定仓位规模。
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 3）记录与复盘</div>
+          <p>
+            记录“决策过程”，不只记录盈亏。回看情绪触发点，把失误转化为规则与边界。
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 4）保持为人</div>
+          <p>
+            保护睡眠、关系与良知。没有任何策略值得你失去内在秩序与真实生活。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faith" class="section">
+      <h2>不靠包装的信仰</h2>
+      <p class="lead">
+        这里的信仰不是标签，而是对齐：当欲望取代真理，人就在心里建起“塔”；
+        当人回到谦卑与顺服，内心才有秩序，行动才有边界。
+      </p>
+
+      <div class="callout">
+        <h3>原则</h3>
+        <p>
+          市场是一面镜子。如果内心不稳，策略就会变成借口。
+          我们选择清醒胜过冲动，真理胜过安慰，纪律胜过噪音。
+        </p>
+      </div>
+    </section>
+
+    <section id="notes" class="section">
+      <h2>笔记</h2>
+      <p class="lead">
+        这里会持续更新：研究备忘、复盘规则、以及信仰反思。当前先用单页作为基础结构。
+      </p>
+
+      <div class="card">
+        <div class="tag"><span class="icon"></span> 接下来</div>
+        <p>
+          • 添加“加入”按钮（Discord/社群）<br/>
+          • 添加“笔记页” / 每周市场备忘录<br/>
+          • 添加“新手起步”路径（风控、仓位、日志）<br/>
+          • 添加“联系页”（邮箱/表单）
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="y"></span> Market Mind</div>
+      <div>免责声明：本站内容仅供学习与交流，不构成投资建议。交易有风险，请自行承担。</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
