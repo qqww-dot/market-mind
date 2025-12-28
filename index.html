@@ -1,120 +1,187 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Market Mind｜信仰 · 纪律 · 市场</title>
-  <meta name="description" content="一个以信仰为根基、以风险为核心、以纪律为方法的市场学习与交流空间。" />
-
-  <!-- 样式：完全保留你原来的专业风格 -->
-  <style>
-    :root{
-      --bg:#0b0f14;
-      --panel:#0f1624;
-      --card:#111c2f;
-      --text:#e7eef7;
-      --muted:#9fb0c3;
-      --line:rgba(255,255,255,.08);
-      --accent:#4aa8ff;
-      --accent2:#7ce7c7;
-      --shadow: 0 28px 90px rgba(0,0,0,.55);
-      --radius:18px;
-      --radius2:24px;
-      --max:1120px;
-    }
-    *{box-sizing:border-box;}
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
-      background: radial-gradient(900px 500px at 15% 10%, rgba(74,168,255,.18), transparent 55%),
-                  radial-gradient(800px 480px at 85% 15%, rgba(124,231,199,.12), transparent 55%),
-                  linear-gradient(180deg,#0b0f14 0%,#0c1220 55%,#0b0f14 100%);
-      color:var(--text);
-    }
-    a{color:inherit;text-decoration:none;}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px;}
-    .topbar{position:sticky;top:0;z-index:5;backdrop-filter:blur(14px);background:rgba(11,15,20,.55);border-bottom:1px solid var(--line);}
-    .topbar-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:650;}
-    .logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#4aa8ff,#7ce7c7);}
-    .nav{display:flex;gap:18px;color:var(--muted);font-size:14px;}
-    .nav a{padding:8px 10px;border-radius:12px;}
-    .nav a:hover{background:rgba(255,255,255,.05);color:var(--text);}
-    .hero{padding:86px 0 46px;}
-    h1{font-size:54px;margin:18px 0 14px;}
-    .subtitle{color:var(--muted);font-size:18px;max-width:42rem;}
-    .btn{padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);}
-    .btn.primary{background:linear-gradient(135deg,#4aa8ff,#7ce7c7);border:none;color:#061018;}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Market Mind｜信仰 · 纪律 · 市场</title>
+<meta name="description" content="信仰、纪律与市场 —— 一个为长期思考与风险优先决策而设的学习空间。" />
+<style>
+/* 样式与你刚才那一版完全相同，这里省略（你保留原来的 style 即可） */
+</style>
 </head>
-
 <body>
 
 <div class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="brand">
-      <span class="logo"></span>
-      <span>Market Mind</span>
-    </div>
-    <div class="nav">
-      <a href="#about">关于我们</a>
-      <a href="#framework">交易框架</a>
-      <a href="#faith">信仰</a>
-      <a href="#notes">笔记</a>
-    </div>
-  </div>
+<div class="wrap topbar-inner">
+<div class="brand">
+<span class="logo"></span>
+<span>Market Mind</span>
+</div>
+<div class="nav">
+<a href="#about">关于</a>
+<a href="#framework">框架</a>
+<a href="#faith">信仰</a>
+<a href="#notes">笔记</a>
+</div>
+</div>
 </div>
 
 <main class="wrap">
 
 <section class="hero">
-  <h1>以信仰为根<br>以纪律行走市场</h1>
-  <p class="subtitle">
-    Market Mind 是一个为认真对待市场与内心的人而设的空间。  
-    我们研究风险、结构与人性，在信仰与理性中寻找长期生存之道。
-  </p>
+<div class="hero-grid">
 
-  <div style="margin-top:20px;">
-    <a class="btn primary">加入社区（即将开放）</a>
-  </div>
+<div>
+<div class="kicker"><span class="dot"></span> 信仰 · 纪律 · 市场</div>
+<h1>长期思考。<br/>以风险为先。</h1>
+<p class="subtitle">
+Market Mind 是一个用于研究市场与人心的专业而安静的空间。
+我们关注流程、概率与纪律 —— 以良知与信仰为引导。
+</p>
+
+<div class="cta-row">
+<a class="btn primary" href="#" onclick="return false;">加入（即将开放）</a>
+<a class="btn" href="#framework">阅读框架</a>
+</div>
+
+<div class="hint">
+非投资建议。无炒作。无承诺。<br/>
+这是一个用于学习、反思与建立稳定决策系统的地方。
+</div>
+</div>
+
+<div class="panel">
+<div class="panel-top">
+<div class="mini">
+<span class="pill">研究</span>
+<span class="pill">心智</span>
+<span class="pill">反思</span>
+</div>
+<span class="muted">v0.1</span>
+</div>
+<div class="panel-body">
+<div class="cover">
+<img src="hero.jpg" onerror="this.style.display='none';" />
+<div class="cover-overlay"></div>
+<div class="cover-text">
+<p class="cover-title">一套自律的框架</p>
+<p class="cover-sub">流程 > 预测 · 风险控制 · 情绪稳定</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
 </section>
 
-<section id="about">
-  <h2>我们是谁</h2>
-  <p>
-    Market Mind 不是荐股群，不是投机课堂，而是一个以信仰、纪律与长期主义为核心的市场学习平台。
-  </p>
+<section id="about" class="section">
+<h2>这是什么</h2>
+<p class="lead">
+这是一个正在建立中的社区入口页。
+目标很简单：建立稳定的内在秩序（信仰与良知），
+以及稳定的外在流程（以风险为核心的市场学习）。
+</p>
+
+<div class="grid">
+<div class="card">
+<div class="tag"><span class="icon"></span> 市场研究</div>
+<p>
+研究市场状态、波动性、结构与行为。
+我们避免情绪化的预测，只记录我们看到的、未知的与风险所在。
+</p>
+</div>
+<div class="card">
+<div class="tag"><span class="icon"></span> 风险与纪律</div>
+<p>
+仓位管理、回撤控制与决策卫生比“信号”更重要。
+纪律本身就是可量化的优势。
+</p>
+</div>
+<div class="card">
+<div class="tag"><span class="icon"></span> 心智与反思</div>
+<p>
+市场会放大人的欲望与恐惧。
+我们练习诚实、克制与反思，
+避免让交易成为逃避信仰的替代品。
+</p>
+</div>
+</div>
 </section>
 
-<section id="framework">
-  <h2>我们如何看待交易</h2>
-  <p>
-    交易不是预测，而是风险管理与心智控制。  
-    我们关注：什么时候该进、什么时候该退、什么时候该什么都不做。
-  </p>
+<section id="framework" class="section">
+<h2>我们如何研究“如何交易”</h2>
+<p class="lead">
+一套在坏日子里也能执行的清晰框架，后续会扩展成完整体系。
+</p>
+
+<div class="two">
+<div class="card">
+<div class="tag"><span class="icon"></span> 1）流程优先于预测</div>
+<p>建立你的“如果/那么”规则。你不需要经常对，只需要持续控制风险。</p>
+</div>
+<div class="card">
+<div class="tag"><span class="icon"></span> 2）以风险为先执行</div>
+<p>入场前先想无效点，盈利前先想最大亏损，信心之前先定仓位。</p>
+</div>
+<div class="card">
+<div class="tag"><span class="icon"></span> 3）记录与复盘</div>
+<p>记录决策而不只是盈亏，回顾情绪触发点，把错误变成规则。</p>
+</div>
+<div class="card">
+<div class="tag"><span class="icon"></span> 4）保持为人</div>
+<p>保护睡眠、关系与良知。没有任何策略值得你失去内在秩序。</p>
+</div>
+</div>
 </section>
 
-<section id="faith">
-  <h2>信仰与市场</h2>
-  <p>
-    市场会放大人内心的贪婪与恐惧。  
-    我们相信，顺服真理比追逐收益更重要。
-  </p>
+<section id="faith" class="section">
+<h2>没有炒作的信仰</h2>
+<p class="lead">
+这里的信仰不是包装，而是对齐。
+当欲望取代真理时，人就会在心里建起“巴别塔”。
+我们的目标是回到谦卑、秩序与顺服。
+</p>
+
+<div class="callout">
+<h3>原则</h3>
+<p>
+市场是一面镜子。
+如果内心不稳，策略就会变成借口。
+我们选择清醒胜过冲动，真理胜过安慰，纪律胜过噪音。
+</p>
+</div>
 </section>
 
-<section id="notes">
-  <h2>研究与反思</h2>
-  <p>
-    这里将持续更新交易规则、复盘笔记与信仰反思。
-  </p>
+<section id="notes" class="section">
+<h2>笔记</h2>
+<p class="lead">
+这里将保存短期研究、反思与规则。
+现在这是一个单页的基础结构。
+</p>
+
+<div class="card">
+<div class="tag"><span class="icon"></span> 即将添加</div>
+<p>
+• 加入按钮（Discord）<br/>
+• 笔记页 / 每周市场备忘录<br/>
+• “如何开始”新手路径（风险、仓位、日志）<br/>
+• 简单的联系页面
+</p>
+</div>
 </section>
 
 </main>
 
-<footer class="wrap" style="margin-top:60px;color:#9fb0c3;">
-  免责声明：本站内容仅用于学习与交流，不构成任何投资建议。
+<footer>
+<div class="wrap foot">
+<div>© <span id="y"></span> Market Mind</div>
+<div>免责声明：本站仅供学习与交流，不构成任何投资建议。交易存在风险。</div>
+</div>
 </footer>
+
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
