@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
@@ -62,10 +61,12 @@
 
     .hero{padding:86px 0 46px;}
     .hero-grid{
-      display:grid;
-      grid-template-columns: 1.18fr .82fr;
-      gap:28px;
-      align-items:start;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:32px;
+  align-items:stretch;
+}
+
     }
     @media (max-width: 920px){ .hero-grid{grid-template-columns:1fr;} }
 
@@ -130,6 +131,15 @@
 
     .panel{
       border:1px solid var(--line);
+      .panel{
+  border:1px solid var(--line);
+  border-radius: var(--radius2);
+  background: linear-gradient(180deg, rgba(17,28,47,.72), rgba(15,22,36,.62));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  min-height: 520px;
+}
+
       border-radius: var(--radius2);
       background: linear-gradient(180deg, rgba(17,28,47,.72), rgba(15,22,36,.62));
       box-shadow: var(--shadow);
@@ -151,7 +161,11 @@
       color:var(--muted);
       font-size:12px;
     }
-    .panel-body{padding:18px;}
+    .panel-body{
+  padding:14px;
+  height:100%;
+}
+padding:18px;}
    .cover{
   width:100%;
   height: 420px;
