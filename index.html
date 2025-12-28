@@ -1,168 +1,465 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Market Mind</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Market Mind</title>
+  <meta name="description" content="Faith, discipline, and markets — a study hub for long-term thinking and risk-first decision making." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1624;
+      --card:#111c2f;
+      --text:#e7eef7;
+      --muted:#9fb0c3;
+      --line:rgba(255,255,255,.08);
+      --accent:#4aa8ff;
+      --accent2:#7ce7c7;
+      --shadow: 0 28px 90px rgba(0,0,0,.55);
+      --radius:18px;
+      --radius2:24px;
+      --max:1120px;
+    }
 
-<style>
-:root{
-    --bg:#0b0f14;
-    --panel:#111826;
-    --card:#151f30;
-    --text:#e5ecf3;
-    --muted:#9fb0c3;
-    --accent:#3da9fc;
-}
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(900px 500px at 15% 10%, rgba(74,168,255,.18), transparent 55%),
+                  radial-gradient(800px 480px at 85% 15%, rgba(124,231,199,.12), transparent 55%),
+                  linear-gradient(180deg, #0b0f14 0%, #0c1220 55%, #0b0f14 100%);
+      color:var(--text);
+    }
 
-*{box-sizing:border-box;}
+    a{color:inherit; text-decoration:none;}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px;}
+    .topbar{
+      position:sticky; top:0; z-index:5;
+      backdrop-filter: blur(14px);
+      background: rgba(11,15,20,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      height:64px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:650; letter-spacing:.3px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:11px;
+      background: linear-gradient(135deg, rgba(74,168,255,.95), rgba(124,231,199,.9));
+      box-shadow: 0 18px 50px rgba(74,168,255,.18);
+    }
+    .nav{
+      display:flex; gap:18px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .nav a{padding:8px 10px; border-radius:12px;}
+    .nav a:hover{background:rgba(255,255,255,.05); color:var(--text);}
 
-body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
-    background:linear-gradient(180deg,#0b0f14,#0e1420);
-    color:var(--text);
-}
+    .hero{
+      padding:86px 0 46px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:28px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns: 1fr; }
+    }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:0 24px;
-}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:13px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:99px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(74,168,255,.12);
+    }
+    h1{
+      margin:18px 0 14px;
+      font-size: 54px;
+      line-height:1.05;
+      letter-spacing:-.8px;
+    }
+    @media (max-width: 520px){
+      h1{font-size:42px;}
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.6;
+      max-width: 42rem;
+    }
 
-header{
-    padding:90px 0 60px;
-    text-align:center;
-}
+    .cta-row{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:600;
+      font-size:14px;
+    }
+    .btn:hover{background:rgba(255,255,255,.06);}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(74,168,255,.9), rgba(124,231,199,.75));
+      border: none;
+      color:#061018;
+      box-shadow: 0 20px 70px rgba(74,168,255,.18);
+    }
+    .btn.primary:hover{filter:brightness(1.03);}
+    .hint{
+      margin-top:14px;
+      color: rgba(159,176,195,.92);
+      font-size:13px;
+      line-height:1.55;
+    }
 
-header h1{
-    font-size:3.2rem;
-    letter-spacing:1px;
-    margin-bottom:20px;
-}
+    .panel{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(17,28,47,.72), rgba(15,22,36,.62));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panel-top{
+      padding:18px 18px 14px;
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .mini{
+      display:flex; gap:10px; align-items:center;
+    }
+    .pill{
+      padding:7px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .panel-body{padding:18px;}
+    .cover{
+      width:100%;
+      aspect-ratio: 16/10;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.06);
+      background: linear-gradient(135deg, rgba(74,168,255,.22), rgba(124,231,199,.12)),
+                  radial-gradient(700px 260px at 20% 20%, rgba(255,255,255,.16), transparent 60%),
+                  linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      display:flex; align-items:flex-end;
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .cover img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:.85;
+      filter: saturate(1.02) contrast(1.03);
+    }
+    .cover-overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(11,15,20,.15), rgba(11,15,20,.85));
+    }
+    .cover-text{
+      position:relative;
+      z-index:2;
+    }
+    .cover-title{
+      font-weight:700;
+      letter-spacing:.2px;
+      margin:0 0 6px;
+      font-size:15px;
+    }
+    .cover-sub{
+      margin:0;
+      color:rgba(231,238,247,.78);
+      font-size:12px;
+      line-height:1.5;
+    }
 
-header p{
-    max-width:720px;
-    margin:auto;
-    color:var(--muted);
-    font-size:1.2rem;
-    line-height:1.6;
-}
+    .section{padding:46px 0;}
+    .section h2{
+      margin:0 0 12px;
+      font-size:26px;
+      letter-spacing:-.2px;
+    }
+    .section p.lead{
+      margin:0 0 22px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width: 60rem;
+    }
 
-.hero-img{
-    margin-top:50px;
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 40px 120px rgba(0,0,0,.6);
-}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns: 1fr;}
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+    }
+    .card .tag{
+      display:inline-flex;
+      gap:8px; align-items:center;
+      color:rgba(231,238,247,.84);
+      font-weight:650;
+      font-size:14px;
+      margin-bottom:10px;
+    }
+    .icon{
+      width:10px; height:10px; border-radius:99px;
+      background: rgba(74,168,255,.9);
+      box-shadow: 0 0 0 7px rgba(74,168,255,.12);
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
 
-.section{
-    padding:90px 0;
-}
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+    }
+    @media (max-width: 920px){
+      .two{grid-template-columns: 1fr;}
+    }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:32px;
-}
+    .callout{
+      border:1px solid rgba(124,231,199,.18);
+      background: linear-gradient(180deg, rgba(124,231,199,.09), rgba(255,255,255,.02));
+      border-radius: var(--radius2);
+      padding:18px;
+    }
+    .callout h3{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:.1px;
+    }
+    .callout p{margin:0; color:var(--muted); line-height:1.7; font-size:14px;}
+    .muted{color:var(--muted);}
 
-.card{
-    background:linear-gradient(180deg,#151f30,#0f1725);
-    border-radius:18px;
-    padding:36px;
-    box-shadow:0 30px 80px rgba(0,0,0,.4);
-    border:1px solid rgba(255,255,255,.04);
-}
-
-.card h2{
-    font-size:1.5rem;
-    margin-bottom:18px;
-    color:var(--accent);
-}
-
-.card p{
-    color:var(--muted);
-    line-height:1.7;
-}
-
-.divider{
-    height:1px;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
-    margin:80px 0;
-}
-
-footer{
-    padding:70px 0;
-    text-align:center;
-    color:var(--muted);
-    font-size:0.9rem;
-}
-</style>
+    footer{
+      padding:40px 0 56px;
+      border-top: 1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.6;
+    }
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+  </style>
 </head>
-
 <body>
 
-<header class="container">
-    <h1>Market Mind</h1>
-    <p>
-        A disciplined framework for understanding markets, risk, and human behavior.  
-        Built for long-term thinking, probabilistic decision making, and mental clarity.
-    </p>
-
-    <!-- 这里放你的主视觉图片 -->
-    <img src="hero.jpg" class="hero-img">
-</header>
-
-<div class="container section">
-    <div class="grid">
-
-        <div class="card">
-            <h2>Market Research</h2>
-            <p>
-                We analyze price behavior, volatility, and structural patterns.
-                Our focus is not prediction, but understanding probability,
-                risk, and market regimes.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>Risk & Discipline</h2>
-            <p>
-                Real edge is not in signals — it is in position sizing,
-                drawdown control, and emotional stability.
-                Discipline is a measurable advantage.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>Mind & Reflection</h2>
-            <p>
-                Markets amplify human psychology.
-                This space is also for reflection, conscience, and inner order —
-                because clarity inside creates clarity in decisions.
-            </p>
-        </div>
-
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Market Mind</span>
+      </div>
+      <div class="nav">
+        <a href="#about">About</a>
+        <a href="#framework">Framework</a>
+        <a href="#faith">Faith</a>
+        <a href="#notes">Notes</a>
+      </div>
     </div>
+  </div>
 
-    <div class="divider"></div>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker"><span class="dot"></span> Faith • Discipline • Markets</div>
+          <h1>Think long-term.<br/>Trade risk-first.</h1>
+          <p class="subtitle">
+            Market Mind is a calm, professional space for studying markets and the human heart.
+            We focus on process, probability, and discipline — guided by conscience and faith.
+          </p>
 
-    <div class="card">
-        <h2>Our Philosophy</h2>
+          <div class="cta-row">
+            <!-- Join 按钮以后再加链接：把 href 改成你的 Discord/社群地址 -->
+            <a class="btn primary" href="#" onclick="return false;">Join (Coming Soon)</a>
+            <a class="btn" href="#framework">Read the Framework</a>
+          </div>
+
+          <div class="hint">
+            Not financial advice. No hype. No promises.<br/>
+            A place to learn, reflect, and build a stable decision system.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-top">
+            <div class="mini">
+              <span class="pill">Research</span>
+              <span class="pill">Mindset</span>
+              <span class="pill">Reflection</span>
+            </div>
+            <span class="muted">v0.1</span>
+          </div>
+          <div class="panel-body">
+            <div class="cover">
+              <!-- 可选：把你的主图放进仓库里，命名为 hero.jpg，就会显示。没有图也不影响页面 -->
+              <img src="hero.jpg" alt="Hero image" onerror="this.style.display='none';" />
+              <div class="cover-overlay" aria-hidden="true"></div>
+              <div class="cover-text">
+                <p class="cover-title">A disciplined framework</p>
+                <p class="cover-sub">Process > prediction • Risk control • Emotional stability</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>What this is</h2>
+      <p class="lead">
+        This site is a landing page for a community-in-progress. The goal is simple:
+        build a stable inner order (faith & conscience) and a stable outer process (risk-first market study).
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="tag"><span class="icon"></span> Market Research</div>
+          <p>
+            Study regimes, volatility, structure, and behavior. We avoid sensational calls.
+            We write what we see, what we don’t know, and what the risk is.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> Risk & Discipline</div>
+          <p>
+            Position sizing, drawdown control, and decision hygiene matter more than “signals”.
+            Discipline is treated as a measurable advantage.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> Mind & Reflection</div>
+          <p>
+            Markets amplify desire and fear. We practice honesty, restraint, and reflection —
+            so decisions don’t become a substitute for faith.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="framework" class="section">
+      <h2>How we study “how to trade”</h2>
+      <p class="lead">
+        A clean framework you can follow even on bad days. Later we can expand this into multiple pages.
+      </p>
+
+      <div class="two">
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 1) Process over prediction</div>
+          <p>
+            Define your market “if/then” rules. You don’t need to be right often — you need to manage risk consistently.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 2) Risk-first execution</div>
+          <p>
+            Before entry: invalidation. Before profit: maximum loss. Before “conviction”: position sizing.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 3) Record & review</div>
+          <p>
+            Track decisions, not just P&L. Review emotional triggers. Turn mistakes into rules.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag"><span class="icon"></span> 4) Stay human</div>
+          <p>
+            Protect sleep, relationships, and conscience. No strategy is worth losing your inner order.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faith" class="section">
+      <h2>Faith, without hype</h2>
+      <p class="lead">
+        Faith here is not branding — it’s alignment. When desire replaces truth, we build a “tower” inside.
+        Our aim is to return to humility, order, and obedience.
+      </p>
+
+      <div class="callout">
+        <h3>Principle</h3>
         <p>
-            We believe markets reward patience, humility, and structure.
-            Long-term survival comes from understanding risk, not chasing returns.
-            Market Mind is a place to study, record, and refine that process.
+          The market is a mirror. If the heart is unstable, the strategy becomes an excuse.
+          We choose clarity over impulse, truth over comfort, and discipline over noise.
         </p>
+      </div>
+    </section>
+
+    <section id="notes" class="section">
+      <h2>Notes</h2>
+      <p class="lead">
+        This space will hold short research notes, reflections, and rules. For now, it’s a single-page foundation.
+      </p>
+
+      <div class="card">
+        <div class="tag"><span class="icon"></span> Coming next</div>
+        <p>
+          • Add Join button (Discord) <br/>
+          • Add Notes page / weekly market memo <br/>
+          • Add “How to start” beginner path (risk, size, journal) <br/>
+          • Add a simple contact section
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="y"></span> Market Mind</div>
+      <div>
+        Disclaimer: Educational content only. Not investment advice. Trading involves risk.
+      </div>
     </div>
-</div>
+  </footer>
 
-<footer>
-    <p>
-        Disclaimer: All content is for educational and informational purposes only.  
-        Nothing on this site constitutes investment advice. Trading involves risk.
-    </p>
-</footer>
-
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
