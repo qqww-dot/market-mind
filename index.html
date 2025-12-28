@@ -1,422 +1,100 @@
-<!doctype html>
-<html lang="zh">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Market Mind · 主内股票</title>
-  <meta name="description" content="信仰 × 纪律 × 市场智慧。一个记录交易情绪、规则与复盘的学习空间。" />
+<meta charset="UTF-8">
+<title>Market Mind</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg0:#070a12;
-      --bg1:#0b1020;
-      --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
-      --stroke:rgba(255,255,255,.10);
-      --text:#e9eefb;
-      --muted:rgba(233,238,251,.68);
-      --muted2:rgba(233,238,251,.52);
-      --accent:#7dd3fc;   /* sky */
-      --accent2:#a7f3d0;  /* mint */
-      --shadow: 0 24px 80px rgba(0,0,0,.55);
-      --radius:22px;
-    }
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont;
+    background: #f7f4ef;
+    color: #222;
+}
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      color:var(--text);
-      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
-      background:
-        radial-gradient(1200px 600px at 20% 10%, rgba(125,211,252,.16), transparent 60%),
-        radial-gradient(1000px 700px at 80% 0%, rgba(167,243,208,.10), transparent 55%),
-        radial-gradient(900px 600px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      min-height:100vh;
-    }
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
 
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:1160px; margin:0 auto; padding:28px 18px 70px; }
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
 
-    /* Top bar */
-    .top{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:10px 10px;
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.03);
-      border-radius:18px;
-      backdrop-filter: blur(10px);
-    }
-    .brand{ display:flex; align-items:center; gap:12px; padding-left:6px; }
-    .logo{
-      width:38px; height:38px; border-radius:14px;
-      background: linear-gradient(135deg, rgba(125,211,252,.95), rgba(167,243,208,.85));
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    .brand h3{ margin:0; font-size:15px; letter-spacing:.2px; }
-    .brand p{ margin:2px 0 0; color:var(--muted2); font-size:12px; }
+.hero p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.6;
+}
 
-    .nav{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-    .pill{
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .btn{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(125,211,252,.35);
-      background: rgba(125,211,252,.12);
-      color: var(--text);
-      font-weight:650;
-      font-size:13px;
-    }
-    .btn:hover{ filter:brightness(1.08); }
+.section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+}
 
-    /* Hero grid */
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap:18px;
-    }
-    @media (max-width: 940px){
-      .grid{ grid-template-columns:1fr; }
-    }
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
 
-    .card{
-      border:1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .pad{ padding:26px; }
-
-    .badges{ display:flex; gap:10px; flex-wrap:wrap; }
-    .badge{
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    h1{
-      margin:16px 0 10px;
-      font-size:54px;
-      line-height:1.05;
-      letter-spacing:-.7px;
-    }
-    @media (max-width: 520px){
-      h1{ font-size:40px; }
-    }
-    .lead{
-      color:var(--muted);
-      font-size:15.5px;
-      line-height:1.85;
-      margin:0 0 16px;
-      max-width: 56ch;
-    }
-    .quote{
-      margin-top:14px;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      color: rgba(233,238,251,.82);
-      font-size:14px;
-      line-height:1.85;
-    }
-    .quote b{ color:var(--text); }
-
-    .minirow{
-      margin-top:16px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .ghost{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-weight:600;
-      font-size:13px;
-    }
-
-    /* Steps */
-    .steps{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-    @media (max-width: 940px){
-      .steps{ grid-template-columns:1fr; }
-    }
-    .step{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:18px;
-      padding:14px 14px;
-      min-height:86px;
-    }
-    .step .n{
-      width:34px; height:34px; border-radius:12px;
-      display:flex; align-items:center; justify-content:center;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.14);
-      color: rgba(233,238,251,.85);
-      font-weight:800;
-      margin-bottom:10px;
-      font-size:13px;
-    }
-    .step b{ display:block; margin-bottom:6px; }
-    .step span{ color:var(--muted2); font-size:13px; line-height:1.7; }
-
-    /* Image card */
-    .imgwrap{
-      position:relative;
-      height: 520px;
-      background: rgba(255,255,255,.02);
-    }
-    @media (max-width: 940px){
-      .imgwrap{ height: 360px; }
-    }
-    .imgwrap img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      filter: saturate(1.02) contrast(1.02);
-    }
-    .imgwrap:before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(800px 450px at 20% 20%, rgba(125,211,252,.15), transparent 60%),
-        linear-gradient(180deg, rgba(7,10,18,.10), rgba(7,10,18,.65));
-      pointer-events:none;
-    }
-    .imgcap{
-      position:absolute; left:18px; right:18px; bottom:16px;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.28);
-      backdrop-filter: blur(10px);
-    }
-    .imgcap .t{ font-weight:800; }
-    .imgcap .s{ margin-top:6px; color:rgba(233,238,251,.72); font-size:13px; line-height:1.7; }
-
-    /* Section below */
-    .below{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:18px;
-    }
-    @media (max-width: 940px){
-      .below{ grid-template-columns:1fr; }
-    }
-
-    .blocktitle{
-      display:flex; align-items:center; justify-content:space-between;
-      margin-bottom:12px;
-    }
-    .blocktitle h2{
-      margin:0; font-size:16px; letter-spacing:.2px;
-    }
-    .hint{ color:var(--muted2); font-size:12.5px; }
-
-    .list{
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .item{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:16px;
-      padding:14px 14px;
-    }
-    .item b{ display:block; margin-bottom:6px; }
-    .item span{ color:var(--muted2); font-size:13px; line-height:1.7; }
-
-    /* Disclaimer */
-    details{
-      margin-top:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius:18px;
-      padding:14px 14px;
-    }
-    summary{
-      cursor:pointer;
-      font-weight:800;
-      list-style:none;
-    }
-    summary::-webkit-details-marker{ display:none; }
-    .disc{
-      margin-top:10px;
-      color: rgba(233,238,251,.74);
-      font-size:13px;
-      line-height:1.85;
-    }
-
-    footer{
-      margin-top:26px;
-      text-align:center;
-      color: rgba(233,238,251,.45);
-      font-size:12.5px;
-    }
-    footer a{ text-decoration:underline; color: rgba(233,238,251,.55); }
-  </style>
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h3>Market Mind</h3>
-          <p>信仰 × 纪律 × 市场智慧 · 交易日记 & 教学</p>
-        </div>
-      </div>
-      <div class="nav">
-        <span class="pill">GitHub Pages · 免费托管</span>
-        <a class="ghost" href="#teach">教学</a>
-        <a class="ghost" href="#journal">日记</a>
-        <a class="btn" href="#start">开始记录</a>
-      </div>
+
+<div class="hero">
+    <h1>Market Mind</h1>
+    <p>
+        A place to study markets, discipline, and long-term thinking.<br>
+        This site is for education, reflection, and personal growth.
+    </p>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>📊 Market Learning</h2>
+        <p>
+            We study price behavior, risk, and probability — not gambling.
+            Every trade is a lesson in patience and discipline.
+        </p>
     </div>
 
-    <div class="grid">
-      <!-- Left -->
-      <div class="card">
-        <div class="pad">
-          <div class="badges">
-            <span class="badge">Discipline</span>
-            <span class="badge">Clarity</span>
-            <span class="badge">Risk First</span>
-          </div>
-
-          <h1>Keep thinking.<br/>Keep disciplined.</h1>
-
-          <p class="lead">
-            这里不是“预测市场”的地方，而是一个让你在每一笔交易前后，
-            都能看清自己的动机、风险、规则与执行的空间。
-          </p>
-
-          <div class="quote">
-            <b>主内股票：</b>我们不追逐贪婪，我们在光中做交易。<br/>
-            <span style="color:rgba(233,238,251,.60);">“因为你的财宝在哪里，你的心也在那里。”—— 马太福音 6:21</span>
-          </div>
-
-          <div class="minirow" id="start">
-            <a class="btn" href="#journal">写一条日记</a>
-            <a class="ghost" href="#teach">读一篇教学</a>
-          </div>
-
-          <div class="steps">
-            <div class="step">
-              <div class="n">01</div>
-              <b>写下情绪</b>
-              <span>把恐惧/贪婪/冲动变成文字，先看见自己。</span>
-            </div>
-            <div class="step">
-              <div class="n">02</div>
-              <b>写下规则</b>
-              <span>入场/止损/止盈写清楚：先有法，再行动。</span>
-            </div>
-            <div class="step">
-              <div class="n">03</div>
-              <b>写下复盘</b>
-              <span>哪里偏离？哪里合一？成长来自一致的重复。</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right image -->
-      <div class="card">
-        <div class="imgwrap">
-          <!-- 继续使用仓库根目录的 hero.jpg -->
-          <img src="hero.jpg" alt="封面图" />
-          <div class="imgcap">
-            <div class="t">封面</div>
-            <div class="s">安静、清醒、有秩序：把每一次交易当作操练与归正。</div>
-          </div>
-        </div>
-      </div>
+    <div class="card">
+        <h2>🧠 Mind & Discipline</h2>
+        <p>
+            Real edge comes from controlling emotion, impulse, and fear.
+            This is where trading meets self-mastery.
+        </p>
     </div>
 
-    <div class="below">
-      <div class="card">
-        <div class="pad">
-          <div class="blocktitle" id="teach">
-            <h2>教学 · Teachings</h2>
-            <div class="hint">从“方法”到“纪律”</div>
-          </div>
-          <div class="list">
-            <div class="item">
-              <b>1) 交易系统的三件事</b>
-              <span>边界（风险）→ 规则（执行）→ 复盘（反馈）。先搭骨架，再谈收益。</span>
-            </div>
-            <div class="item">
-              <b>2) 风险优先：为什么你需要止损</b>
-              <span>你不是在证明自己对，而是在活着穿越波动。</span>
-            </div>
-            <div class="item">
-              <b>3) 纪律不是压抑，是自由</b>
-              <span>把“随心而动”改成“按真理而行”。</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="pad">
-          <div class="blocktitle" id="journal">
-            <h2>日记 · Journal</h2>
-            <div class="hint">把交易变成可追溯的成长</div>
-          </div>
-          <div class="list">
-            <div class="item">
-              <b>模板：一笔交易记录</b>
-              <span>动机（为何想买）｜规则（入场/止损/止盈）｜执行（是否偏离）｜复盘（下一次改什么）</span>
-            </div>
-            <div class="item">
-              <b>模板：情绪记录（30 秒）</b>
-              <span>我现在最强的感受是：__；诱因：__；我选择的顺服行动：__。</span>
-            </div>
-            <div class="item">
-              <b>模板：周复盘</b>
-              <span>本周做对了什么？最大的偏离是什么？下周只改一件事：__。</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="card">
+        <h2>📖 Faith & Reflection</h2>
+        <p>
+            We believe inner order leads to outer success.
+            This space is also for reflection, truth, and conscience.
+        </p>
     </div>
+</div>
 
-    <details open>
-      <summary>免责声明 · Legal Disclaimer</summary>
-      <div class="disc">
-        本网站内容仅用于<strong>教育与个人记录</strong>，不构成任何形式的投资建议。所有观点仅代表作者个人，
-        不代表任何机构或第三方立场。投资具有风险，过去的表现不代表未来结果。访问者在进行任何金融决策前，
-        应自行判断或咨询持牌专业人士。<br/><br/>
-        The content on this website is for educational and personal journal purposes only and does not constitute financial advice.
-        All opinions are solely those of the author. Investing involves risk and past performance does not guarantee future results.
-        Please consult a licensed financial professional before making investment decisions.
-      </div>
-    </details>
+<div class="footer">
+    <p>
+        Disclaimer: This site provides educational content only and does not constitute financial or investment advice.
+        All trading involves risk. You are responsible for your own decisions.
+    </p>
+</div>
 
-    <footer>
-      © 2025 Market Mind · Built with faith and discipline ·
-      <a href="#teach">Teachings</a> · <a href="#journal">Journal</a>
-    </footer>
-  </div>
 </body>
 </html>
