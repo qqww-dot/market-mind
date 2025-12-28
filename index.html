@@ -6,95 +6,163 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont;
-    background: #f7f4ef;
-    color: #222;
+:root{
+    --bg:#0b0f14;
+    --panel:#111826;
+    --card:#151f30;
+    --text:#e5ecf3;
+    --muted:#9fb0c3;
+    --accent:#3da9fc;
 }
 
-.hero {
-    text-align: center;
-    padding: 80px 20px;
+*{box-sizing:border-box;}
+
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+    background:linear-gradient(180deg,#0b0f14,#0e1420);
+    color:var(--text);
 }
 
-.hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:0 24px;
 }
 
-.hero p {
-    font-size: 1.2em;
-    max-width: 700px;
-    margin: auto;
-    line-height: 1.6;
+header{
+    padding:90px 0 60px;
+    text-align:center;
 }
 
-.section {
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: auto;
+header h1{
+    font-size:3.2rem;
+    letter-spacing:1px;
+    margin-bottom:20px;
 }
 
-.card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+header p{
+    max-width:720px;
+    margin:auto;
+    color:var(--muted);
+    font-size:1.2rem;
+    line-height:1.6;
 }
 
-.footer {
-    text-align: center;
-    padding: 40px 20px;
-    font-size: 0.9em;
-    color: #666;
+.hero-img{
+    margin-top:50px;
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 40px 120px rgba(0,0,0,.6);
+}
+
+.section{
+    padding:90px 0;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:32px;
+}
+
+.card{
+    background:linear-gradient(180deg,#151f30,#0f1725);
+    border-radius:18px;
+    padding:36px;
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+    border:1px solid rgba(255,255,255,.04);
+}
+
+.card h2{
+    font-size:1.5rem;
+    margin-bottom:18px;
+    color:var(--accent);
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.divider{
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+    margin:80px 0;
+}
+
+footer{
+    padding:70px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:0.9rem;
 }
 </style>
 </head>
 
 <body>
 
-<div class="hero">
+<header class="container">
     <h1>Market Mind</h1>
     <p>
-        A place to study markets, discipline, and long-term thinking.<br>
-        This site is for education, reflection, and personal growth.
+        A disciplined framework for understanding markets, risk, and human behavior.  
+        Built for long-term thinking, probabilistic decision making, and mental clarity.
     </p>
+
+    <!-- 这里放你的主视觉图片 -->
+    <img src="hero.jpg" class="hero-img">
+</header>
+
+<div class="container section">
+    <div class="grid">
+
+        <div class="card">
+            <h2>Market Research</h2>
+            <p>
+                We analyze price behavior, volatility, and structural patterns.
+                Our focus is not prediction, but understanding probability,
+                risk, and market regimes.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Risk & Discipline</h2>
+            <p>
+                Real edge is not in signals — it is in position sizing,
+                drawdown control, and emotional stability.
+                Discipline is a measurable advantage.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Mind & Reflection</h2>
+            <p>
+                Markets amplify human psychology.
+                This space is also for reflection, conscience, and inner order —
+                because clarity inside creates clarity in decisions.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="card">
+        <h2>Our Philosophy</h2>
+        <p>
+            We believe markets reward patience, humility, and structure.
+            Long-term survival comes from understanding risk, not chasing returns.
+            Market Mind is a place to study, record, and refine that process.
+        </p>
+    </div>
 </div>
 
-<div class="section">
-    <div class="card">
-        <h2>📊 Market Learning</h2>
-        <p>
-            We study price behavior, risk, and probability — not gambling.
-            Every trade is a lesson in patience and discipline.
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>🧠 Mind & Discipline</h2>
-        <p>
-            Real edge comes from controlling emotion, impulse, and fear.
-            This is where trading meets self-mastery.
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>📖 Faith & Reflection</h2>
-        <p>
-            We believe inner order leads to outer success.
-            This space is also for reflection, truth, and conscience.
-        </p>
-    </div>
-</div>
-
-<div class="footer">
+<footer>
     <p>
-        Disclaimer: This site provides educational content only and does not constitute financial or investment advice.
-        All trading involves risk. You are responsible for your own decisions.
+        Disclaimer: All content is for educational and informational purposes only.  
+        Nothing on this site constitutes investment advice. Trading involves risk.
     </p>
-</div>
+</footer>
 
 </body>
 </html>
