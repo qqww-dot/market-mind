@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
@@ -60,15 +61,16 @@
     .nav a:hover{background:rgba(255,255,255,.05); color:var(--text);}
 
     .hero{padding:86px 0 46px;}
+    /* ✅ 关键：右侧封面至少占 1/3（这里约 41%） */
     .hero-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:32px;
-  align-items:stretch;
-}
-
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.70fr);
+      gap:32px;
+      align-items:start;
     }
-    @media (max-width: 920px){ .hero-grid{grid-template-columns:1fr;} }
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns:1fr;}
+    }
 
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
@@ -131,19 +133,12 @@
 
     .panel{
       border:1px solid var(--line);
-      .panel{
-  border:1px solid var(--line);
-  border-radius: var(--radius2);
-  background: linear-gradient(180deg, rgba(17,28,47,.72), rgba(15,22,36,.62));
-  box-shadow: var(--shadow);
-  overflow:hidden;
-  min-height: 520px;
-}
-
       border-radius: var(--radius2);
       background: linear-gradient(180deg, rgba(17,28,47,.72), rgba(15,22,36,.62));
       box-shadow: var(--shadow);
       overflow:hidden;
+      /* ✅ 让封面更像“主视觉”而不是小卡片 */
+      min-height: 520px;
     }
     .panel-top{
       padding:18px 18px 14px;
@@ -161,53 +156,40 @@
       color:var(--muted);
       font-size:12px;
     }
-    .panel-body{
-  padding:14px;
-  height:100%;
-}
-padding:18px;}
-   .cover{
-  width:100%;
-  height: 420px;
-  border-radius: 18px;
-  border:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(135deg, rgba(74,168,255,.22), rgba(124,231,199,.12));
-  position:relative;
-  overflow:hidden;
-}
+    .panel-body{padding:16px;}
 
-      background: linear-gradient(135deg, rgba(74,168,255,.22), rgba(124,231,199,.12)),
-                  radial-gradient(700px 260px at 20% 20%, rgba(255,255,255,.16), transparent 60%),
-                  linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      display:flex; align-items:flex-end;
-      padding:16px;
+    /* ✅ 关键：让图“完整横向显示”，不裁切（圣经+电脑不丢） */
+    .cover{
+      width:100%;
+      height: 360px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
       position:relative;
       overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:16px;
     }
     .cover img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform: scale(1.12);
-  opacity:.95;
-  filter: saturate(1.05) contrast(1.08);
-}
-
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      opacity:.88;
-      filter: saturate(1.02) contrast(1.03);
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;   /* ✅ 不裁切 */
+      object-position:center;
+      background:#0b0f14;   /* contain 时的留白底色 */
+      opacity:.95;
+      filter: saturate(1.04) contrast(1.06);
     }
     .cover-overlay{
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(11,15,20,.10), rgba(11,15,20,.88));
+      /* ✅ 保持文字可读性（底部更暗） */
+      background: linear-gradient(180deg, rgba(11,15,20,.10), rgba(11,15,20,.78));
     }
     .cover-text{position:relative; z-index:2;}
     .cover-title{font-weight:750; margin:0 0 6px; font-size:15px; letter-spacing:.2px;}
-    .cover-sub{margin:0; color:rgba(231,238,247,.78); font-size:12px; line-height:1.5;}
+    .cover-sub{margin:0; color:rgba(231,238,247,.80); font-size:12px; line-height:1.5;}
 
     .section{padding:46px 0;}
     .section h2{margin:0 0 12px; font-size:26px; letter-spacing:-.2px;}
@@ -293,7 +275,6 @@ padding:18px;}
           </p>
 
           <div class="cta-row">
-            <!-- 以后加社群链接：把 href 改成 Discord/微信群/Telegram 等 -->
             <a class="btn primary" href="#" onclick="return false;">加入（即将开放）</a>
             <a class="btn" href="#framework">阅读框架</a>
           </div>
@@ -315,7 +296,6 @@ padding:18px;}
           </div>
           <div class="panel-body">
             <div class="cover">
-              <!-- 把主图放进仓库根目录，命名为 hero.jpg，就会显示 -->
               <img src="hero.jpg" alt="主图" onerror="this.style.display='none';" />
               <div class="cover-overlay" aria-hidden="true"></div>
               <div class="cover-text">
